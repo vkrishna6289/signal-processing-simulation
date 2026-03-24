@@ -1,0 +1,84 @@
+clc;
+clear;
+close;
+
+// =============================
+// CONTINUOUS TIME SIGNALS (CT)
+// =============================
+
+t = -5:0.01:5;
+
+// Unit Step
+u = t >= 0;
+
+// Impulse (approximation)
+imp = zeros(t);
+[m, idx] = min(abs(t));
+imp(idx) = 1;
+
+// Sinusoidal
+sin_sig = sin(2*%pi*t);
+
+// Exponential
+exp_sig = exp(t);
+
+// Plot CT signals
+figure(1);
+
+subplot(2,2,1);
+plot(t, u);
+title("CT Unit Step");
+xlabel("Time"); ylabel("Amplitude");
+
+subplot(2,2,2);
+plot(t, imp);
+title("CT Unit Impulse (Approx)");
+xlabel("Time"); ylabel("Amplitude");
+
+subplot(2,2,3);
+plot(t, sin_sig);
+title("CT Sinusoidal");
+xlabel("Time"); ylabel("Amplitude");
+
+subplot(2,2,4);
+plot(t, exp_sig);
+title("CT Exponential");
+xlabel("Time"); ylabel("Amplitude");
+
+
+// =============================
+// DISCRETE TIME SIGNALS (DT)
+// =============================
+
+scf(2); // force figure window
+
+n = -10:10;
+
+// Unit Step
+u_d = n >= 0;
+
+// Impulse
+imp_d = n == 0;
+
+// Sinusoidal
+sin_d = sin(0.2*%pi*n);
+
+// Exponential
+exp_d = (0.8).^n;
+
+// Plot DT signals (FIXED HERE)
+subplot(2,2,1);
+plot2d3(n, u_d);
+title("DT Unit Step");
+
+subplot(2,2,2);
+plot2d3(n, imp_d);
+title("DT Unit Impulse");
+
+subplot(2,2,3);
+plot2d3(n, sin_d);
+title("DT Sinusoidal");
+
+subplot(2,2,4);
+plot2d3(n, exp_d);
+title("DT Exponential");
